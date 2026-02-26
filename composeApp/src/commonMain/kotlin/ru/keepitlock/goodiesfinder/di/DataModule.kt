@@ -7,7 +7,12 @@ import ru.keepitlock.goodiesfinder.domain.usecase.AddProductUseCase
 import ru.keepitlock.goodiesfinder.domain.usecase.GetProductsUseCase
 
 val dataModule = module {
-    single<ProductRepository> { InMemoryProductRepository() }
+
+    single<ProductRepository> {
+        val repo = InMemoryProductRepository()
+        repo.enableMockData()
+        repo
+    }
 
     factory { AddProductUseCase(get()) }
     factory { GetProductsUseCase(get()) }

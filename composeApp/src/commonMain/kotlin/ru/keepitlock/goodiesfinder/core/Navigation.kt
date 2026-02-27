@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,15 +15,17 @@ import ru.keepitlock.goodiesfinder.presentation.components.BottomNavigationBar
 import ru.keepitlock.goodiesfinder.presentation.list.ProductListScreen
 
 sealed class Screen(val route: String) {
-    object List : Screen("list")
+
     object Add : Screen("add")
+
+    object List : Screen("list")
 }
 
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route ?: Screen.List.route
+    val currentRoute = navBackStackEntry?.destination?.route ?: Screen.Add.route
 
     Scaffold(
         bottomBar = {
@@ -38,20 +41,20 @@ fun AppNavigation() {
     ) { paddingValues ->
         NavHost(
             navController = navController,
-            startDestination = Screen.List.route,
-            modifier = androidx.compose.ui.Modifier.padding(paddingValues)
+            startDestination = Screen.Add.route,
+            modifier = Modifier.padding(paddingValues)
         ) {
-            composable(Screen.List.route) {
-                ProductListScreen()
-            }
             composable(Screen.Add.route) {
                 AddProductScreen(
                     onNavigateToHome = {
-                        navController.navigate(Screen.List.route) {
-                            popUpTo(Screen.List.route)
+                        navController.navigate(Screen.Add.route) {
+                            popUpTo(Screen.Add.route) { inclusive = false }
                         }
                     }
                 )
+            }
+            composable(Screen.List.route) {
+                ProductListScreen()
             }
         }
     }

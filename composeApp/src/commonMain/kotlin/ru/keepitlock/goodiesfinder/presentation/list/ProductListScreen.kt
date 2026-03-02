@@ -29,10 +29,11 @@ import ru.keepitlock.goodiesfinder.data.model.Product
 
 @Composable
 fun ProductListScreen(
-    viewModel: ProductListViewModel = koinViewModel()
+    viewModel: ProductListViewModel = koinViewModel(),
+    onNavigateToDetail: (String) -> Unit,
 ) {
     val products by viewModel.products.collectAsState()
-    var selectedProduct by remember { mutableStateOf<Product?>(null) }
+//    var selectedProduct by remember { mutableStateOf<Product?>(null) }
 
     if (products.isEmpty()) {
         Box(
@@ -49,31 +50,31 @@ fun ProductListScreen(
             items(products) { product ->
                 ProductItem(
                     product = product,
-                    onClick = { selectedProduct = product }
+                    onClick = { onNavigateToDetail(product.id) }
                 )
             }
         }
     }
 
-    selectedProduct?.let { product ->
-        AlertDialog(
-            onDismissRequest = { selectedProduct = null },
-            title = { Text(text = product.name) },
-            text = {
-                Column {
-                    Text("ID: ${product.id}")
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text("Широта: ${product.latitude}")
-                    Text("Долгота: ${product.longitude}")
-                }
-            },
-            confirmButton = {
-                Button(onClick = { selectedProduct = null }) {
-                    Text("Закрыть")
-                }
-            }
-        )
-    }
+//    selectedProduct?.let { product ->
+//        AlertDialog(
+//            onDismissRequest = { selectedProduct = null },
+//            title = { Text(text = product.name) },
+//            text = {
+//                Column {
+//                    Text("ID: ${product.id}")
+//                    Spacer(modifier = Modifier.height(8.dp))
+//                    Text("Широта: ${product.latitude}")
+//                    Text("Долгота: ${product.longitude}")
+//                }
+//            },
+//            confirmButton = {
+//                Button(onClick = { selectedProduct = null }) {
+//                    Text("Закрыть")
+//                }
+//            }
+//        )
+//    }
 }
 
 @Composable

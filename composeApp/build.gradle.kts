@@ -46,6 +46,7 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation("io.insert-koin:koin-compose-viewmodel:4.0.0")
+            implementation(compose.materialIconsExtended)
 
         }
         commonTest.dependencies {

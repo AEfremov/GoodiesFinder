@@ -4,6 +4,7 @@ import org.koin.dsl.module
 import ru.keepitlock.goodiesfinder.data.repository.InMemoryProductRepository
 import ru.keepitlock.goodiesfinder.domain.repository.ProductRepository
 import ru.keepitlock.goodiesfinder.domain.usecase.AddProductUseCase
+import ru.keepitlock.goodiesfinder.domain.usecase.GetProductByIdUseCase
 import ru.keepitlock.goodiesfinder.domain.usecase.GetProductsUseCase
 
 val dataModule = module {
@@ -16,4 +17,5 @@ val dataModule = module {
 
     factory { AddProductUseCase(get()) }
     factory { GetProductsUseCase(get()) }
+    factory { GetProductByIdUseCase(get()) }
 }

@@ -9,5 +9,5 @@ import ru.keepitlock.goodiesfinder.presentation.list.ProductListViewModel
 val viewModelModule = module {
     viewModel { AddProductViewModel(get()) }
     viewModel { ProductListViewModel(get()) }
-    viewModel { ProductDetailViewModel(get()) }
+    viewModel { ProductDetailViewModel(get(), get()) }
 }

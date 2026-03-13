@@ -1,15 +1,13 @@
 package ru.keepitlock.goodiesfinder.core
 
-import ru.keepitlock.goodiesfinder.data.repository.InMemoryProductRepository
+import ru.keepitlock.goodiesfinder.data.repository.ProductRepositoryImpl
 import ru.keepitlock.goodiesfinder.domain.repository.ProductRepository
 import ru.keepitlock.goodiesfinder.domain.usecase.AddProductUseCase
 import ru.keepitlock.goodiesfinder.domain.usecase.GetProductsUseCase
-import ru.keepitlock.goodiesfinder.presentation.add.AddProductViewModel
-import ru.keepitlock.goodiesfinder.presentation.list.ProductListViewModel
 
 object DiContainer {
     // Data
-    private val repository: ProductRepository = InMemoryProductRepository()
+    private val repository: ProductRepository = ProductRepositoryImpl()
 
     // Domain
     private val addProductUseCase = AddProductUseCase(repository)

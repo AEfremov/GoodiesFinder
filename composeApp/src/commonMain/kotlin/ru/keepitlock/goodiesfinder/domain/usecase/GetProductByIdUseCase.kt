@@ -5,6 +5,9 @@ import kotlinx.coroutines.flow.map
 import ru.keepitlock.goodiesfinder.data.model.Product
 import ru.keepitlock.goodiesfinder.domain.repository.ProductRepository
 
+/**
+ * Usecase для получения продукта по id
+ */
 class GetProductByIdUseCase(
     private val repository: ProductRepository
 ) {

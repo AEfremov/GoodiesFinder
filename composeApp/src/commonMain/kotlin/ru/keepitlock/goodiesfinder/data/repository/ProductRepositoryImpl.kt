@@ -10,7 +10,7 @@ import ru.keepitlock.goodiesfinder.domain.repository.ProductRepository
 /**
  *
  */
-class InMemoryProductRepository(
+class ProductRepositoryImpl(
     private val useMockData: Boolean = false,
 ) : ProductRepository {
 
